@@ -2,42 +2,26 @@
 # Python basics
 # 2021-02-01
 
-#print("Hello, world!")
+def factorial(n):
+    """Number to calculate factorial of"""
+    # Deal with negative inputs
+    if n < 1:
+        m = -n
+    else:
+        m = n
+    # The running total = eventually the factorial
+    total = 1
+    # Loop to do the multiplications
+    while m > 1:
+        total = total * m
+        m = m - 1
+    # Return the answer
+    if n < 1:
+        return -total
+    else:
+        return total
 
-a = 1
-b = 1.0
-s = "Hello, world from a string!"
-t = 'Hello, from a different string'
-
-#print(a, b, s, t)
-
-#print(s[3:10:2])
-
-x = [1, 2, 3, "Hello", 1.0]
-#print(x)
-#print(x[0])
-#print(x[2])
-#print(x[-1])
-
-#for i in x[::2]:
-#    print(i)
-#    print(i + i)
-
-#for i in range(1000):
-#    print(i)
-
-d = {"no_wheels": 4, "make": "Skoda"}
-
-print(d["no_wheels"])
-
-d["model"] = "Superb"
-
-print(d["model"])
-    
-r = [1, 2, 3, 4]
-
-print(r)
-
-s = [i*i for i in r]
-
-print(s)
+# Test the function
+n = -10
+# Calculate the factorial of n
+print(f"The factorial of {n} is {factorial(n)}")
