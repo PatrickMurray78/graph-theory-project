@@ -1,4 +1,4 @@
- # Adapted from the pseudocode at:
+# Adapted from the pseudocode at:
 # https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 
 def shunt(infix):
