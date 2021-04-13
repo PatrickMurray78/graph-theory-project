@@ -18,7 +18,7 @@ def shunt(infix):
         # c is an operator.
         elif c in {'*', '.', '|'}:
             # Check what is on the stack.
-            while len(stack) > 0 and stack[-1] != '(' and prec[stack[-1]] >= prec[c]:
+            while len(stack) > 0 and stack[-1] != '(' and prec[stack[-1]] >=   prec[c]:
                 # Append operator at top of stack to output.
                 postfix = postfix + stack[-1]
                 # Remove operator from stack.
