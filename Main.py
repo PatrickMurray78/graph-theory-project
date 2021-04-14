@@ -51,7 +51,8 @@ def shunt(infix):
 if __name__ == "__main__":
     for infix in ["a.(b.b)*.a"]:
         print(f"infix: {infix}")
-        print(f"shunt: {shunt(infix)}")
+        postfix = shunt(infix)
+        print(f"shunt: {postfix}")
         print()
 
 
@@ -162,7 +163,6 @@ def re_to_nfa(postfix):
         return stack[0]
 
 if __name__ == "__main__":
-    for postfix in ["abb.*.a.","100.*.1."]:
-        print(f"postfix: {postfix}")
-        print(f"nfa:     {re_to_nfa(postfix)}")
-        print()
+    print(f"postfix: {postfix}")
+    print(f"nfa:     {re_to_nfa(postfix)}")
+    print()
