@@ -48,12 +48,12 @@ def shunt(infix):
     # Return the postfix
     return postfix
 
-if __name__ == "__main__":
-    for infix in ["a.(b.b)*.a"]:
-        print(f"infix: {infix}")
-        postfix = shunt(infix)
-        print(f"shunt: {postfix}")
-        print()
+#if __name__ == "__main__":
+#    for infix in ["a.(b.b)*.a"]:
+#        print(f"infix: {infix}")
+#        postfix = shunt(infix)
+#        print(f"shunt: {postfix}")
+#        print()
 
 
 # Implement Thompson's construction
@@ -162,7 +162,26 @@ def re_to_nfa(postfix):
     else:
         return stack[0]
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
+#    print(f"postfix: {postfix}")
+#    print(f"nfa:     {re_to_nfa(postfix)}")
+#    print()
+
+# Create a function to check if a string matches an infix regex
+
+def match(infix, string):
+    # Call the shunting yard algorithm to convert infix to
+    # postfix
+    postfix = shunt(infix)
     print(f"postfix: {postfix}")
-    print(f"nfa:     {re_to_nfa(postfix)}")
-    print()
+    # Call the thompson construction to convert postfix to
+    # an nfa
+    nfa = re_to_nfa(postfix)
+    print(f"nfa:     {nfa}")
+
+    # Loop through the string
+    for c in string:
+        print(c)
+
+# Test match function to make sure inputs are being read as expected
+match("a.(b.b)*.a", "Hello. World")
