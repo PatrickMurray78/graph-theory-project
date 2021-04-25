@@ -189,5 +189,21 @@ def re_to_nfa(postfix):
         return stack[0]
 
 
-# Test match function to make sure inputs are being read as expected
-match("a.(b.b)*.a", "Hello. World")
+# Test match function
+if __name__ == "__main__":
+    tests = [["(a.b|b*)",   ["ab", "b", "bb", "a"]],
+             ["a.(b.b)*.a", ["aa", "abba", "aba"]],
+             ["1.(0.0)*.1", ["11", "100001", "11001"]]
+    ]
+
+    for test in tests:
+        infix = test[0]
+        print(f"infix:   {infix}")
+        postfix = shunt(infix)
+        print(f"postfix: {postfix}")
+        nfa = re_to_nfa(postfix)
+        print(f"thompson: {nfa}")
+        for s in test[1]:
+            match = nfa.match(s)
+            print(f"Match '{s}': {match}")
+        print()
