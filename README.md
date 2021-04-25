@@ -14,6 +14,14 @@ This is a Python 3 project that searches a text file using a [regular expression
 3. Using the command line change your directory to the folder where you cloned this repository.
 4. Once inside the folder, run `python3 main.py` which will run the program.
 
+## Research
+Throughout the semester I have been watching the videos that have been posted on learnonline and completing the corresponding labs for each week of content. 
+I have never used python before so I felt this was a good opportunity to take a quick [course](https://youtu.be/_uQrJ0TkZlc) in python at the beginning of the semester as I knew it would help me understand the language. Towards the end of the video there were some exercises to complete which were challenging but I found it very useful and it gave me a headstart for this module which has helped me throughout the semester.
+
+The videos on learnonline were very well put together and I understood everything for the most part until we began the shunting yard algorithm. This was mainly with converting infix to postfix and what they meant. I found this [video](https://youtu.be/b6miFHYFaVI) on youtube which went through infix and postfix in depth. With my newfound understanding of converting infix to postfix, I finished off implementing the [shunting yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) which converts infix regular expressions to postfix. This was not too difficult to do as most of the code was provided through the lab videos.
+
+Thompson's construction was the next topic covered and it proved to be a hard topic to grasp. I spent a lot of time on the [wiki](https://en.wikipedia.org/wiki/Thompson%27s_construction) which helped me understand how I could join NFAs together using special symbols. I also took this time to look more in depth into NFA's as I had never came across them before. Although automatons are similar to NFA's, an NFA can transition to and be in multiple states at once. I found lots of information on NFA's [here](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton).
+
 ## What is a regular expression?
 * Sequence of characters that specifies a search pattern.
 * Helps match, locate and manage text.
