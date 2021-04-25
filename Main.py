@@ -190,10 +190,10 @@ def re_to_nfa(postfix):
 
 
 # Test match function
-if __name__ == "__main__":
+def tests():
     tests = [["(a.b|b*)",   ["ab", "b", "bb", "a"]],
-             ["a.(b.b)*.a", ["aa", "abba", "aba"]],
-             ["1.(0.0)*.1", ["11", "100001", "11001"]]
+            ["a.(b.b)*.a", ["aa", "abba", "aba"]],
+            ["1.(0.0)*.1", ["11", "100001", "11001"]]
     ]
 
     for test in tests:
@@ -207,3 +207,31 @@ if __name__ == "__main__":
             match = nfa.match(s)
             print(f"Match '{s}': {match}")
         print()
+
+# GUI for menu
+keepRunning = True
+while keepRunning:
+    print("\n1. Enter regex and string")
+    print("2. Run tests")
+    print("3. Exit")
+    option = input("=> ")
+
+    if option == "1":
+        print("Enter infix regular expression: ")
+        infix = input()
+        print("Enter a string: ")
+        string = input()
+        postfix = shunt(infix)
+        nfa = re_to_nfa(postfix)
+        match = nfa.match(string)
+        print(f"Match '{string}': {match}")
+    elif option == "2":
+        tests()
+    elif option == "3":
+        print("Goodbye!")
+        keepRunning = False
+    else:
+        print("Invalid option entered!")
+
+    
+
