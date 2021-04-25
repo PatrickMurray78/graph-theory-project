@@ -11,12 +11,8 @@ def shunt(infix):
     prec = {'*': 100,  '.': 90 ,'|': 80}
     # Loop through the input a character at a time.
     for c in infix:
-        # c is a digit.
-        if c in {'a', 'b'}:
-            # Push it to the output.
-            postfix = postfix + c
         # c is an operator.
-        elif c in {'*', '.', '|'}:
+        if c in {'*', '.', '|'}:
             # Check what is on the stack.
             while len(stack) > 0 and stack[-1] != '(' and prec[stack[-1]] >=   prec[c]:
                 # Append operator at top of stack to output.
@@ -36,6 +32,10 @@ def shunt(infix):
                 stack = stack[:-1]
             # Remove open bracket from stack.
             stack = stack[:-1]
+        # c is a digit.
+        else:
+            # Push it to the output.
+            postfix = postfix + c
     while len(stack) != 0:
         # Append operator at top of stack to output.
         postfix = postfix + stack[-1]
@@ -45,7 +45,7 @@ def shunt(infix):
     return postfix
 
 if __name__ == "__main__":
-    for infix in ["a.(b.b)*.a"]:
+    for infix in ["1.(0.0)*.1"]:
         print(f"infix: {infix}")
         print(f"shunt: {shunt(infix)}")
         print()
