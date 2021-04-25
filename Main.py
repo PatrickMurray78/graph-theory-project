@@ -48,14 +48,6 @@ def shunt(infix):
     # Return the postfix
     return postfix
 
-#if __name__ == "__main__":
-#    for infix in ["a.(b.b)*.a"]:
-#        print(f"infix: {infix}")
-#        postfix = shunt(infix)
-#        print(f"shunt: {postfix}")
-#        print()
-
-
 # Implement Thompson's construction
 # Adapted from https://web.microsoftstream.com/video/4012d43a-bb46-4ceb-8aa9-2ae598539a32
 
@@ -71,12 +63,41 @@ class State:
         self.label = label
         self.arrows = arrows
         self.accept = accept
+    
+    def followes(self):
+        """The set of states that are gotten from following this state
+           and all its e arrows."""
+        # Include this state in the returned set.
+        states = {self}
+        # If  this state has e arrows, i.e label is None.
+        if self.label is None:
+            # Loop through this state's arrows.
+            for state in self.arrows:
+                # Incorporate that state's earrow states in states.
+                states = (states | state.followes())
+        # Returns the set of states.
+        return states
 
 class NFA:
     """A non-deterministic finite automaton."""
     def __init__(self, start, end):
         self.start = start
         self.end = end
+
+    """Check if a string matches an infix regular expression"""
+    def match(infix, string):
+        # Call the shunting yard algorithm to convert infix to
+        # postfix
+        postfix = shunt(infix)
+        print(f"postfix: {postfix}")
+        # Call the thompson construction to convert postfix to
+        # an nfa
+        nfa = re_to_nfa(postfix)
+        print(f"nfa:     {nfa}")
+
+        # Loop through the string
+        for c in string:
+            print(c)
 
 def re_to_nfa(postfix):
     # A stack for NFAs
@@ -162,26 +183,6 @@ def re_to_nfa(postfix):
     else:
         return stack[0]
 
-#if __name__ == "__main__":
-#    print(f"postfix: {postfix}")
-#    print(f"nfa:     {re_to_nfa(postfix)}")
-#    print()
-
-# Create a function to check if a string matches an infix regex
-
-def match(infix, string):
-    # Call the shunting yard algorithm to convert infix to
-    # postfix
-    postfix = shunt(infix)
-    print(f"postfix: {postfix}")
-    # Call the thompson construction to convert postfix to
-    # an nfa
-    nfa = re_to_nfa(postfix)
-    print(f"nfa:     {nfa}")
-
-    # Loop through the string
-    for c in string:
-        print(c)
 
 # Test match function to make sure inputs are being read as expected
 match("a.(b.b)*.a", "Hello. World")
