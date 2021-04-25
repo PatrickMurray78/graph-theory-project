@@ -85,19 +85,24 @@ class NFA:
         self.end = end
 
     """Check if a string matches an infix regular expression"""
-    def match(infix, string):
-        # Call the shunting yard algorithm to convert infix to
-        # postfix
-        postfix = shunt(infix)
-        print(f"postfix: {postfix}")
-        # Call the thompson construction to convert postfix to
-        # an nfa
-        nfa = re_to_nfa(postfix)
-        print(f"nfa:     {nfa}")
-
-        # Loop through the string
-        for c in string:
-            print(c)
+    def match(self, s):
+        """Return True if this NFA (instance) matches the string s."""
+        # A list of previous states that we are in.
+        previous = self.start.followes()
+        # Loop through thr string, a character at a time.
+        for c in s:
+            # Start with an empty set of current states.
+            current = set()
+            # Loop through the previous states
+            for state in previous:
+                # Check if there is a c arrow from state.
+                if state.label == c:
+                    # Add followes for next state.
+                    current = (current | state.arrows[0].followes())
+                # Replace previous with current
+                previous = current
+        # If the final state is in previous, then return True. False otherwise.
+        return (self.end in previous)
 
 def re_to_nfa(postfix):
     # A stack for NFAs
