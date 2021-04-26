@@ -22,6 +22,8 @@ The videos on learnonline were very well put together and I understood everythin
 
 Thompson's construction was the next topic covered and it proved to be a hard topic to grasp. I spent a lot of time on the [wiki](https://en.wikipedia.org/wiki/Thompson%27s_construction) which helped me understand how I could join NFAs together using special symbols. I also took this time to look more in depth into NFA's as I had never came across them before. Although automatons are similar to NFA's, an NFA can transition to and be in multiple states at once. I found lots of information on NFA's [here](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton).
 
+The next step was searching a text file using a regular expression. I understand the logic after I read in a text file but I did not know how to actually read in the text file. We were provided with the code `with open('file.txt', 'r') as f:`. I checked out the python docs on [reading and writing files](https://realpython.com/read-write-files-python/) which gave me all the information I needed to implement this part of the project.
+
 ## What is a regular expression?
 * Sequence of characters that specifies a search pattern.
 * Helps match, locate and manage text.
