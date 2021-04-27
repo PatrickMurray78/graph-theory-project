@@ -208,23 +208,32 @@ def tests():
             print(f"Match '{s}': {match}")
         print()
 
+def searchFile(infix, filePath):
+    count = 1
+    print(f"\nThe following lines match your regular expression {infix}")
+    print("================================================================\n")
+    with open(filePath, 'r') as reader:
+        for line in reader.readlines():
+            line = line.rstrip('\n')
+            postfix = shunt(infix)
+            nfa = re_to_nfa(postfix)
+            match = nfa.match(line)
+            if match == True:
+                print(f"Line {count}: {line}")
+            count = count + 1
+
 # GUI for menu
 keepRunning = True
 while keepRunning:
-    print("\n1. Enter regex and string")
+    print("\n1. Search text file using regular expression")
     print("2. Run tests")
     print("3. Exit")
     option = input("=> ")
 
     if option == "1":
-        print("Enter infix regular expression: ")
-        infix = input()
-        print("Enter a string: ")
-        string = input()
-        postfix = shunt(infix)
-        nfa = re_to_nfa(postfix)
-        match = nfa.match(string)
-        print(f"Match '{string}': {match}")
+        infix = input("\nEnter the regular expression: ")
+        filePath = input("Enter the path to file: ")
+        searchFile(infix, filePath)
     elif option == "2":
         tests()
     elif option == "3":
