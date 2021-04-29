@@ -13,11 +13,11 @@ def shunt(infix):
     # The shunting yard operator stack.
     stack = ""
     # Operator precedence.
-    prec = {'*': 100,  '.': 90 ,'|': 80}
+    prec = {'*': 100, '?': 100, '+': 100,  '.': 90 ,'|': 80}
     # Loop through the input a character at a time.
     for c in infix:
         # c is an operator.
-        if c in {'*', '.', '|'}:
+        if c in {'*', '?', '+', '.', '|'}:
             # Check what is on the stack.
             while len(stack) > 0 and stack[-1] != '(' and prec[stack[-1]] >= prec[c]:
                 # Append operator at top of stack to output.
@@ -171,6 +171,23 @@ def re_to_nfa(postfix):
             nfa = NFA(start, end)
             # Push to the stack.
             stack.append(nfa)
+        elif c == '?':
+            # Pop one NFA off stack.
+            nfa1 = stack[-1]
+            stack = stack[:-1]
+            # Create new start and end states.
+            start = State(None, [], False)
+            end = State(None, [], True)
+            # Make new start state point at old start state.
+            start.arrows.append(nfa1.start)
+            # And at the new end state
+            start.arrows.append(end)
+            # Make old accept state point to new end state.
+            nfa1.end.arrows.append(end)
+            # Make a new NFA
+            nfa = NFA(start, end)
+            # Push to the stack.
+            stack.append(nfa)
         else:
             # Create an NFA for the non-special character c
             # Create the end state.
@@ -208,7 +225,8 @@ def searchFile(infix, filePath):
 def tests():
     tests = [["(a.b|b*)",   ["ab", "b", "bb", "a"]],
             ["a.(b.b)*.a", ["aa", "abba", "aba"]],
-            ["1.(0.0)*.1", ["11", "100001", "11001"]]
+            ["1.(0.0)*.1", ["11", "100001", "11001"]],
+            ["a?.b?", ["a", "b", "ab", "abb"]]
     ]
 
     for test in tests:
@@ -250,6 +268,10 @@ while keepRunning:
         keepRunning = False
     else:
         print("Invalid option entered!")
-
-    
+        postfix = "colou?r"
+        print(postfix)
+        nfa = re_to_nfa(postfix)
+        print(nfa)
+        match = nfa.match("color")
+        print(match)
 
