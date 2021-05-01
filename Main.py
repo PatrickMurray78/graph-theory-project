@@ -51,7 +51,8 @@ def searchFile(infix, filePath):
 keepRunning = True
 # Keep running menu until keepRunning is set to false by selecting option 2 to exit
 while keepRunning:
-    print(f"%15s" % (""))
+    print("\n============================================")
+    print(f"%35s" % ("Regular Expression Matcher"))
     print("============================================")
     print("1. Search text file using regular expression")
     print("2. Exit")
