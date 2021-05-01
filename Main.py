@@ -51,14 +51,16 @@ def searchFile(infix, filePath):
 keepRunning = True
 # Keep running menu until keepRunning is set to false by selecting option 2 to exit
 while keepRunning:
-    print("\n1. Search text file using regular expression")
+    print(f"%15s" % (""))
+    print("============================================")
+    print("1. Search text file using regular expression")
     print("2. Exit")
     option = input("=> ")
 
     # Search text file for lines matching the regular expression
     if option == "1":
         infix = input("\nEnter the regular expression: ")
-        filePath = input("Enter the path to file: ")
+        filePath = input("Enter the name of or path to file: ")
         # Call the searchFile function and pass the regular expression and file path as parameters
         searchFile(infix, filePath)
     # Exit
