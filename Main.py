@@ -20,28 +20,32 @@ if args.command == 'test':
 
 # This function searches through a file and returns every line which matches the regular expression
 def searchFile(infix, filePath):
-    # Use count to keep track of which line we are on in file
-    count = 1
-    print(f"\nThe following lines match your regular expression {infix}")
-    print("================================================================\n")
-    # Open the file located at filePath in read mode
-    with open(filePath, 'r') as reader:
-        # For each line in the file
-        for line in reader.readlines():
-            # Remove the newline character
-            line = line.rstrip('\n')
-            # Get the postfix of the infix regex using shunt.py
-            postfix = shunt.shunt(infix)
-            # Get the nfa of the postfix using thompson.py
-            nfa = thompson.re_to_nfa(postfix)
-            # Match the nfa to the line of the file
-            match = nfa.match(line)
-            # The line matches!
-            if match == True:
-                # Output the line number and the line which match
-                print(f"Line {count}: {line}")
-            # Increment count
-            count = count + 1
+    try:
+        # Open the file located at filePath in read mode
+        with open(filePath, 'r') as reader:
+            print(f"\nThe following lines match your regular expression {infix}")
+            print("================================================================\n")
+            # Use count to keep track of which line we are on in file
+            count = 1
+            # For each line in the file
+            for line in reader.readlines():
+                # Remove the newline character
+                line = line.rstrip('\n')
+                # Get the postfix of the infix regex using shunt.py
+                postfix = shunt.shunt(infix)
+                # Get the nfa of the postfix using thompson.py
+                nfa = thompson.re_to_nfa(postfix)
+                # Match the nfa to the line of the file
+                match = nfa.match(line)
+                # The line matches!
+                if match == True:
+                    # Output the line number and the line which match
+                    print(f"Line {count}: {line}")
+                # Increment count
+                count = count + 1
+    except FileNotFoundError:
+        print("\nCould not find file, please try again!")
+        return
 
 # GUI for menu
 keepRunning = True

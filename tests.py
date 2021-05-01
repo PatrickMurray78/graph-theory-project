@@ -11,7 +11,7 @@ def tests():
     ]
 
     print(f"\n\n%20s" % ("Tests"))
-    print("====================================\n") #18
+    print("====================================\n")
 
     # For each test in tests
     for test in tests:
