@@ -38,7 +38,7 @@ class NFA:
         """Return True if this NFA (instance) matches the string s."""
         # A list of previous states that we are in.
         previous = self.start.followes()
-        # Loop through thr string, a character at a time.
+        # Loop through the string, a character at a time.
         for c in s:
             # Start with an empty set of current states.
             current = set()
