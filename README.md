@@ -1,9 +1,9 @@
 # Project: Graph Theory 2021
 
-## What is this?
+# What is this?
 This is a Python 3 project that searches a text file using a [regular expression](https://en.wikipedia.org/wiki/Regular_expression). The program takes a regular expression and the name of the file as command line arguments and outputs the lines of the file matching the regular expression. [Nondeterministic finite automata](https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton) are used to parse the regular expressions.
 
-## What do the files in the repository do?
+# What do the files in the repository do?
 1. **Labs folder** - contains all labs completed for this module.
 2. **Main.py** - contains the main code for the application.
 3. **shunt.py** - contains the code for shunting yard algorithm for regular expressions
@@ -11,7 +11,7 @@ This is a Python 3 project that searches a text file using a [regular expression
 5. **tests.py** - contains tests that can be ran through command line
 6. **README.md** - contains useful information about the project (How to run, explantion of algorithm etc).
 
-## How to run the program
+# How to run the program
 1. Python 3 is required to run this project.
 2. Clone repository by using the following command in your terminal `git clone https://github.com/PatrickMurray78/graph-theory-project.git`.
 3. Using the command line change your directory to the folder where you cloned this repository.
@@ -20,7 +20,7 @@ This is a Python 3 project that searches a text file using a [regular expression
 
 Note: Depending on your setup you may need to run `python main.py` or `python main.py --test`
 
-## How does it work?
+# How does it work?
 When the program is ran, the menu is loaded which allows the user to enter one of two options. Option 1 allows the user to search a text file using a regular expression to find matches and option 2 will exit the program. When option 1 is selected the user will be prompted to enter the regular expression they wish to use to find matches for and also the name or path to the file which contains the strings to compare the regular expression against. The first function that is called from here is `searchFile`.
 
 ### searchFile(infix, filePath)
@@ -49,12 +49,16 @@ Pop one NFA from the stack and create new start and end states. Make new start s
 #### Non-special character
 If a character is encountered which is not an operator, we create an end state and a start state which points at the end state. Point the new start state at new end state. Make a new NFA and push it to stack.
 
-## match(self, s)
+### match(self, s)
 The match function checks if a string matches an infix regular expression and returns true if this NFA (instance) matches the string. First we get a list of all previous states we were in by calling the followes() function which I will describe below. We then loop through the string s, a character at a time. We start with an empty set of current states and loop  through the previous states while checking if there is a c arrow from state. If there is add followes for the  next  state and replace the previious with current. If the final state is in previous, then return true as it matches otherwise return false.
 
+### followes(self)
+The followes function returns  the set of states that are gotten from following this NFA (instance) and all of its e arrows. First we include this state in the returned set. If this state has e arrows, i.e the label is None it will check all arrows and follow them if possible. If it is able to follow them then it will start the process again from that arrow until it can follow no more arrows. Finally it will return the set of states.
 
+### tests()
+The tests function allows the user to run some predefined tests. To do this I used argparse which allows the user to run the `--test` command in command line when running the code which will run the tests. Once the command is ran, the tests array is looped through. For each test in tests we set the infix to  the first field in test. Then we get the postfix of the infix regex using shunt.py. Using this infix we get the NFA using thompson.py. We can then loop through the second field of each test as this contains another array of strings to match against the NFA. If the string matches the NFA it will output true, else will output false.
 
-## Research
+# Research
 Throughout the semester I have been watching the videos that have been posted on learnonline and completing the corresponding labs for each week of content. 
 I have never used python before so I felt this was a good opportunity to take a quick [course](https://youtu.be/_uQrJ0TkZlc) in python at the beginning of the semester as I knew it would help me understand the language. Towards the end of the video there were some exercises to complete which were challenging but I found it very useful and it gave me a headstart for this module which has helped me throughout the semester.
 
@@ -72,11 +76,11 @@ After the project was completed I wanted to change the way the tests were output
 
 ## What is a regular expression?
 A regular expression is a specially encoded string of text that is used as a pattern for matching sets of strings. A  regular expressions is also known as a regex or regexp and is also referred to as a rational expression.  Usually these patterns are used by string-serching algorithms for "find" or "find and replace" operations on strings, or for input validation. They began to emerge in the 1940s as a way to describe regular languages, but they really began to show up in the programming world during the 1970s. Regular expressions later became an important part of the tool suite that emerged from the Unix operating system—the ed, sed and vi (vim) editors, grep, AWK, among others. There have been different syntaxes for writing regular expressions since the 1980s, one being the [POSIX](https://en.wikipedia.org/wiki/POSIX) standard and another, widely used, being the [Perl](https://en.wikipedia.org/wiki/Perl) syntax. Many programming languages provide regex capabilities either built-in or via libraries, as it has uses in many situations. Each character in a regular expression is either a [metacharacter](https://en.wikipedia.org/wiki/Metacharacter) which is a character that has a special meaning or a regular character that has a literal meaning. For example, in the regex `b.`, 'b' is a literal character that matches just 'b', while '.' is a metacharacter that matches every character that except a newline. Therefore, this regex matches, for example, 'b%', or 'bx', or 'b5'. Together, metacharacters and literal characters can be used to identifiy text of a given pattern or process a number of instances of it. The metacharacter syntax is designed specifically to represent prescribed targets in a concise and flexible way to direct the automation of text processing of a variety of input data, in a form easy to type using a standard ASCII keyboard. A [formalism](https://en.wikipedia.org/wiki/Formalism_(philosophy_of_mathematics)) is the view that holds that statements of mathematics and logic can be considered to be statements about the consequences of the manipulation of strings using established manipulation rules and most formalisms provide the following operations to construct regular expressions.
-### Boolean "or"
+#### Boolean "or"
 A vertical bar seperates alternatives. For example, `gray|grey` can match "gray" or "grey".
-### Grouping
+#### Grouping
 Parentheses are used to define the scope and precedence of the operators (among other uses). For example, `gray|grey` and `gr(a|e)y` are equivalent patterns which both describe the set of "gray" or "grey".
-### Quantification
+#### Quantification
 A quantifier after a token (such as a character) or group specifies how often that a preceding element is allowed to occur. The most common quantifiers are the question mark `?`, the asterisk `*` (derived from the Kleene star), and the plus sign `+` (Kleene plus).
 - `?` The question mark indicates zero or one occurrences of the preceding element. For example, `colou?r` matches both "color" and "colour".
 - `*` The asterisk indicates zero or more occurrences of the preceding element. For example, `ab*c` matches "ac", "abc", "abbc", "abbbc", and so on.
@@ -85,7 +89,7 @@ A quantifier after a token (such as a character) or group specifies how often th
 - `{min,}` The preceding item is matched min or more times.
 - `{,max}` The preceding item is matched up to max times.
 - `{min,max}` The preceding item is matched at least min times, but not more than max times.
-### Wildcard
+#### Wildcard
 The wildcard `.` matches any character. For example, `a.b` matches any string that contains an "a", then any other character and then "b", `a.*b` matches any string that contains an "a", and then the character "b" at some later point.
 
 ## How do regular expressions differ across implementations?
