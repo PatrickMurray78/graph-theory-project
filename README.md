@@ -20,6 +20,18 @@ This is a Python 3 project that searches a text file using a [regular expression
 
 Note: Depending on your setup you may need to run `python main.py` or `python main.py --test`
 
+# User Guide
+To run the program, follow the steps above. Once the program has launched you will be presented with this screen.
+![](https://github.com/PatrickMurray78/graph-theory-project/blob/main/Images/MenuTest.png)  
+You will have two options.
+1.	Search text file using regular expression. This allows the user  to enter a regular expression and also the name of or path to file to match the regular expression against. This returns the lines that match the regular expression entered and also the string on the line.  
+![](https://github.com/PatrickMurray78/graph-theory-project/blob/main/Images/FileTest.png)
+2.	Exit. This allows the user to exit the program and return to the command line.  
+![](https://github.com/PatrickMurray78/graph-theory-project/blob/main/Images/ExitTest.png)
+## Run tests
+When the tests are ran by adding `--test` as a param when running the code the following is displayed.  
+![](https://github.com/PatrickMurray78/graph-theory-project/blob/main/Images/Tests.png)
+
 # How does it work?
 When the program is ran, the menu is loaded which allows the user to enter one of two options. Option 1 allows the user to search a text file using a regular expression to find matches and option 2 will exit the program. When option 1 is selected the user will be prompted to enter the regular expression they wish to use to find matches for and also the name or path to the file which contains the strings to compare the regular expression against. The first function that is called from here is `searchFile`.
 
@@ -76,11 +88,11 @@ After the project was completed I wanted to change the way the tests were output
 
 ## What is a regular expression?
 A regular expression is a specially encoded string of text that is used as a pattern for matching sets of strings. A  regular expressions is also known as a regex or regexp and is also referred to as a rational expression.  Usually these patterns are used by string-serching algorithms for "find" or "find and replace" operations on strings, or for input validation. They began to emerge in the 1940s as a way to describe regular languages, but they really began to show up in the programming world during the 1970s. Regular expressions later became an important part of the tool suite that emerged from the Unix operating system—the ed, sed and vi (vim) editors, grep, AWK, among others. There have been different syntaxes for writing regular expressions since the 1980s, one being the [POSIX](https://en.wikipedia.org/wiki/POSIX) standard and another, widely used, being the [Perl](https://en.wikipedia.org/wiki/Perl) syntax. Many programming languages provide regex capabilities either built-in or via libraries, as it has uses in many situations. Each character in a regular expression is either a [metacharacter](https://en.wikipedia.org/wiki/Metacharacter) which is a character that has a special meaning or a regular character that has a literal meaning. For example, in the regex `b.`, 'b' is a literal character that matches just 'b', while '.' is a metacharacter that matches every character that except a newline. Therefore, this regex matches, for example, 'b%', or 'bx', or 'b5'. Together, metacharacters and literal characters can be used to identifiy text of a given pattern or process a number of instances of it. The metacharacter syntax is designed specifically to represent prescribed targets in a concise and flexible way to direct the automation of text processing of a variety of input data, in a form easy to type using a standard ASCII keyboard. A [formalism](https://en.wikipedia.org/wiki/Formalism_(philosophy_of_mathematics)) is the view that holds that statements of mathematics and logic can be considered to be statements about the consequences of the manipulation of strings using established manipulation rules and most formalisms provide the following operations to construct regular expressions.
-#### Boolean "or"
+### Boolean "or"
 A vertical bar seperates alternatives. For example, `gray|grey` can match "gray" or "grey".
-#### Grouping
+### Grouping
 Parentheses are used to define the scope and precedence of the operators (among other uses). For example, `gray|grey` and `gr(a|e)y` are equivalent patterns which both describe the set of "gray" or "grey".
-#### Quantification
+### Quantification
 A quantifier after a token (such as a character) or group specifies how often that a preceding element is allowed to occur. The most common quantifiers are the question mark `?`, the asterisk `*` (derived from the Kleene star), and the plus sign `+` (Kleene plus).
 - `?` The question mark indicates zero or one occurrences of the preceding element. For example, `colou?r` matches both "color" and "colour".
 - `*` The asterisk indicates zero or more occurrences of the preceding element. For example, `ab*c` matches "ac", "abc", "abbc", "abbbc", and so on.
@@ -89,11 +101,11 @@ A quantifier after a token (such as a character) or group specifies how often th
 - `{min,}` The preceding item is matched min or more times.
 - `{,max}` The preceding item is matched up to max times.
 - `{min,max}` The preceding item is matched at least min times, but not more than max times.
-#### Wildcard
+### Wildcard
 The wildcard `.` matches any character. For example, `a.b` matches any string that contains an "a", then any other character and then "b", `a.*b` matches any string that contains an "a", and then the character "b" at some later point.
 
 ## How do regular expressions differ across implementations?
-The differences in implementations are usually the way special characters `{}()[]^$` are handled and occasionally substituted, the handling/availability of POSIX character classes e.g `[:digit:]` and the use of options e.g `g` `i` etc. There is a very informative table on the [comparison of regular-expression engines wiki](https://en.wikipedia.org/wiki/Comparison_of_regular-expression_engines) page
+The differences in implementations are usually the way special characters `{}()[]^$` are handled and occasionally substituted, the handling/availability of POSIX character classes e.g `[:digit:]` and the use of options e.g `g` `i` etc. There is a very informative table on the [comparison of regular-expression engines wiki](https://en.wikipedia.org/wiki/Comparison_of_regular-expression_engines) page.
 
 
 * How special characters `{}()[]^$` are handled and occasionally substituted.
